@@ -1,4 +1,4 @@
-# Image Mangler!
+# Image Mangler
 
 [logo](https://github.com/miguelvalente/imagemangler/blob/master/logo.png?raw=true)
 
