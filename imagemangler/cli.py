@@ -4,10 +4,17 @@ from PIL import Image
 import cv2
 import numpy as np
 import zipfile
+import concurrent.futures
 
 from imagemangler.core.mangler import deteriorate
 
 WINDOW_SIZE = (800, 600)
+
+
+def zip_image(zip_file, img, name, extension):
+    img_bytes = io.BytesIO()
+    img.save(img_bytes, format=extension)
+    zip_file.writestr(f"{name}.{extension}", img_bytes.getvalue())
 
 
 def main(
@@ -58,10 +65,15 @@ def main(
     extension = image_path.split(".")[-1]
     if typer.confirm("Do you want to save all mangled images?"):
         with zipfile.ZipFile("mangled_images.zip", "w") as zip_file:
-            for i, img in enumerate(mangled_images):
-                img_bytes = io.BytesIO()
-                img.save(img_bytes, format=extension)
-                zip_file.writestr(f"mangled_img_{i}.{extension}", img_bytes.getvalue())
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                futures = []
+                for i, img in enumerate(mangled_images):
+                    futures.append(
+                        executor.submit(
+                            zip_image, zip_file, img, f"mangled_img_{i}", extension
+                        )
+                    )
+                concurrent.futures.wait(futures)
 
     elif typer.confirm("Do you want to save the last mangled image?"):
         img.save(f"mangled_img.{extension}")
