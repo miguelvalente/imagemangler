@@ -1,4 +1,3 @@
-import concurrent.futures
 import io
 import zipfile
 
@@ -7,7 +6,7 @@ import typer
 from PIL import Image
 
 from imagemangler.core.mangler import deteriorate
-from imagemangler.core.utils import show_image, zip_image
+from imagemangler.core.utils import show_image, zip_images
 
 app = typer.Typer()
 
@@ -25,11 +24,12 @@ def main(
     Mangle an image by deteriorating it iteratively with
     quality reduction of lossy algorithms
     """
+    extension = image_path.split(".")[-1]
     img = Image.open(io.BytesIO(open(image_path, "rb").read()))
 
     mangled_images = []
     while True:
-        img = deteriorate(img, quality=quality)
+        img = deteriorate(img, extension=extension, quality=quality)
         mangled_images.append(img)
 
         show_image(img)
@@ -45,22 +45,14 @@ def main(
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    extension = image_path.split(".")[-1]
+    print(extension)
     if typer.confirm("Do you want to save all mangled images?"):
         with zipfile.ZipFile("mangled_images.zip", "w") as zip_file:
-            # for faster zipping, use concurrent.futures
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                futures = []
-                for i, img in enumerate(mangled_images):
-                    futures.append(
-                        executor.submit(
-                            zip_image, zip_file, img, f"mangled_img_{i}", extension
-                        )
-                    )
-                concurrent.futures.wait(futures)
+            zip_images(zip_file, mangled_images, extension)
 
     elif typer.confirm("Do you want to save the last mangled image?"):
         img.save(f"mangled_img.{extension}")
+
 
 if __name__ == "__main__":
     app()

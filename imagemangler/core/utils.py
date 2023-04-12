@@ -6,10 +6,12 @@ import numpy as np
 WINDOW_SIZE = (1100, 900)
 
 
-def zip_image(zip_file, img, name, extension):
-    img_bytes = io.BytesIO()
-    img.save(img_bytes, format=extension)
-    zip_file.writestr(f"{name}.{extension}", img_bytes.getvalue())
+def zip_images(zip_file, images, extension):
+    for i, img in enumerate(images):
+        with io.BytesIO() as f:
+            img.save(f, format=extension)
+            f.seek(0)
+            zip_file.writestr(f"mangled_img_{i}.{extension}", f.read())
 
 
 def show_image(img):
