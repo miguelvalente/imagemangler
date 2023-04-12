@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "imagemangler"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["miguelvalente <miguelvalente@protonmail.com>"]
 readme = "README.md"
@@ -21,3 +21,6 @@ isort = "^5.12.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+imagemangler = "imagemangler.cli:main"
