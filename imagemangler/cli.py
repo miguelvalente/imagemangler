@@ -1,5 +1,6 @@
 import concurrent.futures
 import io
+import threading
 import zipfile
 
 import cv2
@@ -8,6 +9,10 @@ import typer
 from PIL import Image
 
 from imagemangler.core.mangler import deteriorate
+
+
+app = typer.Typer()
+
 
 WINDOW_SIZE = (800, 600)
 
@@ -18,6 +23,7 @@ def zip_image(zip_file, img, name, extension):
     zip_file.writestr(f"{name}.{extension}", img_bytes.getvalue())
 
 
+@app.command()
 def main(
     image_path: str,
     quality: int = typer.Argument(70, help="Base quality to start with"),
@@ -51,7 +57,7 @@ def main(
         cv2.waitKey(2)
 
         if not auto_mangle:
-            if not typer.confirm("Do you want to continue?", default=True):
+            if not typer.confirm("Mangle again?", default=True):
                 break
 
         quality = max(0, quality - quality_step)
@@ -60,7 +66,6 @@ def main(
 
     if auto_mangle:
         cv2.waitKey(0)
-
     cv2.destroyAllWindows()
 
     extension = image_path.split(".")[-1]
@@ -81,4 +86,4 @@ def main(
 
 
 if __name__ == "__main__":
-    typer.run(main)
+    app()
