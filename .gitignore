@@ -2,5 +2,4 @@
 *.webp
 *.jpeg
 *.jpg
-*.png
 dist/
