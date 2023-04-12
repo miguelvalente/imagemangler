@@ -1,10 +1,11 @@
-import typer
+import concurrent.futures
 import io
-from PIL import Image
+import zipfile
+
 import cv2
 import numpy as np
-import zipfile
-import concurrent.futures
+import typer
+from PIL import Image
 
 from imagemangler.core.mangler import deteriorate
 

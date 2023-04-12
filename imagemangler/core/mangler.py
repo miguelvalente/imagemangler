@@ -1,5 +1,6 @@
-from PIL import Image
 import io
+
+from PIL import Image
 
 
 def deteriorate(img: Image, optimize: bool = True, quality: int = 20) -> Image:
