@@ -33,11 +33,10 @@ jobs:
           run: poetry install --with dev
 
         - name: Run tests and coverage
-          run: |
-            coverage run --source=imagemangler -m pytest
-        - name: Coverage Threshold
-          run: |
-            coverage report --fail-under=80
+          run: pytest --cov=imagemangler --cov-fail-under=80
+
+        - name: Generate coverage report
+          run: coverage report
         - name: Check Formatting with Black
           run: black --check .
 
