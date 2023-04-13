@@ -1,7 +1,9 @@
 ![logo](https://github.com/miguelvalente/imagemangler/blob/master/logo.png?raw=true)
+<p align="center">
+    <em>Image Mangler is a command-line tool to deteriorate an image iteratively using lossy algorithms.</em>
+</p>
 
-
-Image Mangler is a command-line tool to deteriorate an image iteratively using lossy algorithms.
+---
 
 # Installation
 
