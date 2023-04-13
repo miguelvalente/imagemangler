@@ -4,11 +4,11 @@ from PIL import Image
 
 
 def deteriorate(
-    img: Image,
+    img: Image.Image,
     extension,
     optimize: bool = True,
     quality: int = 20,
-) -> Image:
+) -> Image.Image:
     """Deteriorate the image quality for `iterations` number of times"""
 
     compressed_buffer = io.BytesIO()
