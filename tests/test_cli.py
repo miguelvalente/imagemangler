@@ -13,6 +13,9 @@ from imagemangler.cli import app
 
 @patch("cv2.waitKey", MagicMock())
 @patch("cv2.destroyAllWindows", MagicMock())
+@patch("cv2.namedWindow", MagicMock())
+@patch("cv2.resizeWindow", MagicMock())
+@patch("cv2.imshow", MagicMock())
 def test_main_valid_local_image(runner, sample_image_path):
     # Test if the main function runs without error with a valid local image
     with runner.isolated_filesystem():
@@ -28,6 +31,9 @@ def test_main_valid_local_image(runner, sample_image_path):
 
 @patch("cv2.waitKey", MagicMock())
 @patch("cv2.destroyAllWindows", MagicMock())
+@patch("cv2.namedWindow", MagicMock())
+@patch("cv2.resizeWindow", MagicMock())
+@patch("cv2.imshow", MagicMock())
 def test_main_save_last_mangled_image(runner, sample_image_path):
     # Test if the last mangled image is saved
     with runner.isolated_filesystem():
@@ -46,6 +52,9 @@ def test_main_save_last_mangled_image(runner, sample_image_path):
 
 @patch("cv2.waitKey", MagicMock())
 @patch("cv2.destroyAllWindows", MagicMock())
+@patch("cv2.namedWindow", MagicMock())
+@patch("cv2.resizeWindow", MagicMock())
+@patch("cv2.imshow", MagicMock())
 def test_main_save_all_mangled_images(runner, sample_image_path):
     # Test if all mangled images are saved in a zip file
     with runner.isolated_filesystem():
