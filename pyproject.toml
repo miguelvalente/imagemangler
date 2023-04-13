@@ -23,6 +23,7 @@ ruff = "^0.0.261"
 pytest = "^7.3.0"
 coverage = "^7.2.3"
 pytest-cov = "^4.0.0"
+black = "^23.3.0"
 
 [build-system]
 requires = ["poetry-core"]
