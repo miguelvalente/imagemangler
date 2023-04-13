@@ -24,7 +24,11 @@ def main(
     Mangle an image by deteriorating it iteratively with
     quality reduction of lossy algorithms
     """
+    # write a funtion to change the extension of the image to jpeg if it is jpg
     extension = image_path.split(".")[-1]
+    if extension == "jpg":
+        extension = "jpeg"
+
     img = Image.open(io.BytesIO(open(image_path, "rb").read()))
 
     mangled_images = []
@@ -52,12 +56,12 @@ def main(
     print(f"Your image `{image_name}` was mangled {len(mangled_images)} times!")
     print("🖨")
 
-    if typer.confirm("Do you want to save all mangled images?"):
+    if typer.confirm("Do you want to save all mangled images?", default=True):
         with zipfile.ZipFile(f"mangled_{image_no_ext}.zip", "w") as zip_file:
             zip_images(zip_file, mangled_images, extension)
         print(f"Your mangled images were saved to mangled_{image_no_ext}.zip")
-    elif typer.confirm("Do you want to save the last mangled image?"):
-        img.save(f"mangled_img.{extension}")
+    elif typer.confirm("Do you want to save the last mangled image?", default=True):
+        img.save(f"mangled_img.{extension}", format=extension)
         print(f"Your mangled image was saved to mangled_img.{extension}")
 
 
