@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/miguelvalente/imagemangler/blob/master/logo.png?raw=true"><img src="https://github.com/miguelvalente/imagemangler/blob/master/logo.png?raw=true" alt="ImageMangler"></a>
+  <a href="https://github.com/miguelvalente/imagemangler"><img src="https://github.com/miguelvalente/imagemangler/blob/master/assests/logo.png?raw=true" alt="ImageMangler"></a>
 </p>
 <p align="center">
     <em>Image Mangler is a command-line tool to deteriorate an image iteratively using lossy algorithms.</em>
@@ -35,3 +35,8 @@ For a more details you can use `--help`:
 ```bash
 imagemangler --help
 ```
+
+----
+<p align="center">
+  <a href="https://github.com/miguelvalente/imagemangler"><img src="https://github.com/miguelvalente/imagemangler/blob/master/assets/imagemangler.gif?raw=true" alt="ImageMangler"></a>
+</p>
