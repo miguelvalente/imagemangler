@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/miguelvalente/imagemangler"><img src="https://github.com/miguelvalente/imagemangler/blob/master/assests/logo.png?raw=true" alt="ImageMangler"></a>
+  <a href="https://github.com/miguelvalente/imagemangler"><img src="https://github.com/miguelvalente/imagemangler/blob/master/assets/logo.png?raw=true" alt="ImageMangler"></a>
 </p>
 <p align="center">
     <em>Image Mangler is a command-line tool to deteriorate an image iteratively using lossy algorithms.</em>
