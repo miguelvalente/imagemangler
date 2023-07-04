@@ -1,12 +1,7 @@
-import io
 import os
 import zipfile
 from shutil import copyfile
 from unittest.mock import MagicMock, patch
-
-import pytest
-from PIL import Image
-from typer.testing import CliRunner
 
 from imagemangler.cli import app
 
